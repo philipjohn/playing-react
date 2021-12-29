@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
 import he from 'he'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
 
 const Article = ({ id }) => {
 	const [ article, setArticle ] = useState()
@@ -40,6 +42,12 @@ const Article = ({ id }) => {
 		return Promise.all(promises)
 	}
 
+	const formatDate = (dateString) => {
+		TimeAgo.addDefaultLocale(en)
+		const timeAgo = new TimeAgo('en-GB')
+		return timeAgo.format(new Date(dateString))
+	}
+
 	return (
 		<>
 			{ article &&
@@ -60,7 +68,7 @@ const Article = ({ id }) => {
 						*/}
 						<div className='article-meta'>
 							<span className='byline'>by { author.name }</span>
-							<span className='published'>{ article.date }</span>
+							<span className='published'>{ formatDate(article.date) }</span>
 						</div>
 					</div>
 					<div
