@@ -68,7 +68,12 @@ const Article = ({ id }) => {
 						*/}
 						<div className='article-meta'>
 							<span className='byline'>by { author.name }</span>
-							<span className='published'>{ formatDate(article.date) }</span>
+							<span
+								className='published'
+								title={ new Date(article.date) }
+							>
+								{ formatDate(article.date) }
+							</span>
 						</div>
 					</div>
 					<div
