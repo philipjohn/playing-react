@@ -1,17 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useContext } from 'react'
+import ReactDOM from 'react-dom'
+import Article from './components/Article'
+import AppStore, { AppContext } from './components/Context'
+import Header from './components/Header'
+import Home from './components/Home'
+import './index.css'
+
+const App = () => {
+
+	const { screen, setScreen, article } = useContext(AppContext)
+	console.log(article)
+	return (
+		<>
+			<Header />
+
+			{ screen === 'home' && <Home /> }
+			{ screen === 'article' && <Article id={ article } /> }
+
+			{/* todo: replace with footer component */ }
+			<div id="footer">
+				<p>Copyright &#169; Lichfield Community Media C.I.C., All rights reserved.</p>
+				<p>"Lichfield Live" is a registered trademark of Lichfield Community Media C.I.C.</p>
+			</div>
+		</>
+	)
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+	<AppStore>
+		<App />
+	</AppStore>,
+	document.getElementById('root')
+)
