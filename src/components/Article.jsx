@@ -5,12 +5,13 @@ import apiFetch from '@wordpress/api-fetch'
 import he from 'he'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
+import FeaturedImage from './FeaturedImage'
 
 const Article = ({ id }) => {
 	const [ article, setArticle ] = useState()
 	const [ category, setCategory ] = useState()
 	const [ tags, setTags ] = useState([])
-	const [ author, setAuthor ] = useState([])
+	const [ author, setAuthor ] = useState({})
 
 	useEffect(() => {
 		apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/posts/${ id }` })
@@ -61,11 +62,6 @@ const Article = ({ id }) => {
 							</div>
 						}
 						<h1 className='entry-title'>{ he.decode(article.title.rendered) }</h1>
-						{/*
-							todo: insert featured image using new <FeaturedImage/> component
-							and prop passing window.innerWidth to choose a good image
-							size to retrieve.
-						*/}
 						<div className='article-meta'>
 							<span className='byline'>by { author.name }</span>
 							<span
@@ -76,6 +72,17 @@ const Article = ({ id }) => {
 							</span>
 						</div>
 					</div>
+
+					{/*
+						todo: insert featured image using new <FeaturedImage/> component
+						and prop passing window.innerWidth to choose a good image
+						size to retrieve.
+					*/}
+					<FeaturedImage
+						innerWidth={ window.innerWidth }
+						id={ article.featured_media }
+					/>
+
 					<div
 						className='article-content'
 						// Print the content, removing any embedded images.
