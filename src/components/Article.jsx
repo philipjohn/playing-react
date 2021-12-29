@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
@@ -7,6 +8,7 @@ const Article = ({ id }) => {
 	const [ article, setArticle ] = useState()
 	const [ category, setCategory ] = useState()
 	const [ tags, setTags ] = useState([])
+	const [ author, setAuthor ] = useState([])
 
 	useEffect(() => {
 		apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/posts/${ id }` })
@@ -15,6 +17,10 @@ const Article = ({ id }) => {
 				apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/categories/${ data._yoast_wpseo_primary_category }` })
 					.then((cat) => {
 						setCategory(cat);
+					});
+				apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/users/${ data.author }` })
+					.then((author) => {
+						setAuthor(author);
 					});
 				return data.tags
 			})
@@ -38,29 +44,29 @@ const Article = ({ id }) => {
 		<>
 			{ article &&
 				<div className='post'>
-					{ category &&
-						<div className='category'>
-							<a href={ category.link }>
-								{ category.name }
-							</a>
+					<div className="entry-header">
+						{ category &&
+							<div className='category'>
+								<a href={ category.link }>
+									{ category.name }
+								</a>
+							</div>
+						}
+						<h1 className='entry-title'>{ he.decode(article.title.rendered) }</h1>
+						{/*
+							todo: insert featured image using new <FeaturedImage/> component
+							and prop passing window.innerWidth to choose a good image
+							size to retrieve.
+						*/}
+						<div className='article-meta'>
+							<span className='byline'>by { author.name }</span>
+							<span className='published'>{ article.date }</span>
 						</div>
-					}
-					<h1>{ he.decode(article.title.rendered) }</h1>
-					{/*
-						todo: insert featured image using new <FeaturedImage/> component
-						and prop passing window.innerWidth to choose a good image
-						size to retrieve.
-					*/}
-					<div className='article-meta'>
-						<span className='byline'>
-							by
-							<a href="/">{ article.author }</a>
-						</span>
-						<span className='published'>{ article.date }</span>
 					</div>
 					<div
 						className='article-content'
-						dangerouslySetInnerHTML={ { __html: article.content.rendered } }
+						// Print the content, removing any embedded images.
+						dangerouslySetInnerHTML={ { __html: article.content.rendered.replace(/<img[^>]*>/g, "") } }
 					/>
 					{ tags &&
 						<div className='tags'>

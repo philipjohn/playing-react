@@ -5,7 +5,11 @@ const Header = () => {
 	const { setScreen } = useContext(AppContext)
 	return (
 		<div id='header'>
-			<a href="/" onClick={ () => { setScreen('home') } } >
+			<a
+				href="/"
+				className='logo-link'
+				onClick={ () => { setScreen('home') } }
+			>
 				<img
 					src='LichfieldLiveLogo_White.webp'
 					alt='Lichfield Live logo'
