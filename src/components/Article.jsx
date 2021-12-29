@@ -83,10 +83,14 @@ const Article = ({ id }) => {
 					/>
 					{ tags &&
 						<div className='tags'>
-							<strong>Tagged: </strong>
+							<span>Tagged: </span>
 							<ul>
 								{ tags.map((tag) => (
-									<li key={ tag.id }>{ tag.name }</li>
+									<li key={ tag.id }>
+										<a href={ tag.id }>
+											{ tag.name }
+										</a>
+									</li>
 								)) }
 							</ul>
 						</div>
