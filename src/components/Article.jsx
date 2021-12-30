@@ -12,6 +12,8 @@ import Byline from './Byline'
 import TagsList from './TagsList'
 import md5 from 'js-md5'
 import ArticleList from './ArticleList'
+import Comments from './Comments'
+TimeAgo.addDefaultLocale(en)
 
 const Article = ({ id }) => {
 	const [ loading, setLoading ] = useState(true)
@@ -36,7 +38,6 @@ const Article = ({ id }) => {
 	}, [])
 
 	const formatDate = (dateString) => {
-		TimeAgo.addDefaultLocale(en)
 		const timeAgo = new TimeAgo('en-GB')
 		return timeAgo.format(new Date(dateString))
 	}
@@ -81,6 +82,8 @@ const Article = ({ id }) => {
 				<h1 className='section-header'>Latest Articles</h1>
 				<ArticleList count={ 5 } excludeTags={ [ 9074 ] } />
 			</div>
+
+			{ article && <Comments postId={ article.id } /> }
 		</>
 	)
 }

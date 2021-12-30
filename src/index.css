@@ -50,7 +50,8 @@ h1, h2, h3, h4, h5, h6,
 .post .entry-header .category a,
 .post .tags span, .post .tags a,
 .section-header,
-.article-list .post .headline a {
+.article-list .post .headline a,
+.comment-meta .author, .comment-meta .date {
 	font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
 }
 
@@ -80,7 +81,8 @@ h1, h2, h3, h4, h5, h6,
 .screen-category,
 .screen-tag,
 .screen-author,
-.post.latest-articles {
+.post.latest-articles,
+#comments {
 	margin-left: 1rem;
 	margin-right: 1rem;
 }
@@ -109,6 +111,16 @@ h1, h2, h3, h4, h5, h6,
 
 .post .article-content p {
 	padding: 0.5em 0;
+}
+
+.post .article-content .has-drop-cap:first-letter{
+	float: left;
+	font-size: 6.4em;
+	line-height: .68;
+	font-weight: 100;
+	margin: .05em .1em 0 0;
+	text-transform: uppercase;
+	font-style: normal
 }
 
 .post .tags span {
