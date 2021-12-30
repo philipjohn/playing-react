@@ -77,7 +77,8 @@ h1, h2, h3, h4, h5, h6,
 .post .article-content,
 .post .tags,
 .screen-home,
-.screen-category {
+.screen-category,
+.screen-tag {
 	margin-left: 1rem;
 	margin-right: 1rem;
 }
