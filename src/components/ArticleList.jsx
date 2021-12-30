@@ -7,20 +7,23 @@ import apiFetch from '@wordpress/api-fetch'
 import ArticleSummary from './ArticleSummary'
 import LoadingSpinner from './LoadingSpinner'
 
-const ArticleList = ({ count, tags, categories, authors }) => {
+const ArticleList = ({ count, tags, categories, authors, excludeTags }) => {
 	const [ posts, setPosts ] = useState([])
 	const [ loading, setLoading ] = useState(true)
 
 	const apiUrl = new URL(`http://lichfieldlive.test/wp-json/wp/v2/posts`)
 	apiUrl.searchParams.append('per_page', count)
 	if (tags) {
-		apiUrl.searchParams.append("tags", tags.join(','));
+		apiUrl.searchParams.append('tags', tags.join(','))
 	}
 	if (categories) {
-		apiUrl.searchParams.append("categories", categories.join(','));
+		apiUrl.searchParams.append('categories', categories.join(','))
 	}
 	if (authors) {
-		apiUrl.searchParams.append("author", authors.join(','));
+		apiUrl.searchParams.append('author', authors.join(','))
+	}
+	if (excludeTags) {
+		apiUrl.searchParams.append('tags_exclude', excludeTags.join(','))
 	}
 
 	useEffect(() => {
