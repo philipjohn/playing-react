@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
+import LoadingSpinner from './LoadingSpinner'
 
 const FeaturedImage = ({ id, innerWidth }) => {
 
+	const [ loading, setLoading ] = useState(true)
 	const [ image, setImage ] = useState()
 	const [ altText, setAltText ] = useState()
 
@@ -25,7 +27,7 @@ const FeaturedImage = ({ id, innerWidth }) => {
 						'medium_large',
 						'full'
 					]
-					if (desiredSizes.indexOf(key) != -1) {
+					if (desiredSizes.indexOf(key) !== -1) {
 						sizes.push(data.media_details.sizes[ key ])
 					}
 				}
@@ -46,20 +48,28 @@ const FeaturedImage = ({ id, innerWidth }) => {
 			})
 			.then((image) => {
 				setImage(image)
+				setLoading(false)
 			})
 	}, [])
 
 	return (
-		<div className='featured-image'>
-			{ image &&
-				<img
-					src={ image.source_url }
-					width={ image.width }
-					height={ image.height }
-					alt={ altText }
-				/>
-			}
-		</div>
+		<>
+			{ loading && (
+				<LoadingSpinner width={ innerWidth } height={ (innerWidth * 0.75) } />
+			) }
+			{ (!loading && image) && (
+				<div className='featured-image'>
+					{ image &&
+						<img
+							src={ image.source_url }
+							width={ image.width }
+							height={ image.height }
+							alt={ altText }
+						/>
+					}
+				</div>
+			) }
+		</>
 	)
 }
 

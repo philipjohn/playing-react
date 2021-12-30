@@ -2,15 +2,12 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
+import LoadingSpinner from './LoadingSpinner'
 
 const FeaturedImageThumbnail = ({ id }) => {
 
-	const [ image, setImage ] = useState({
-		alt: 'Placeholder image',
-		url: "http//placehold.it/150x150",
-		width: 150,
-		height: 150
-	})
+	const [ placeholder, setPlaceholder ] = useState(true)
+	const [ image, setImage ] = useState()
 
 	useEffect(() => {
 		// todo: put image into local storage to avoid unnecessary querying.
@@ -20,20 +17,28 @@ const FeaturedImageThumbnail = ({ id }) => {
 					setImage({
 						alt: resp.alt_text,
 						url: resp.media_details.sizes.thumbnail.source_url,
-						width: resp.media_details.sizes.thumbnail.width,
-						height: resp.media_details.sizes.thumbnail.height
+						width: 100,
+						height: 100
 					});
+					setPlaceholder(false)
 				}
 			});
 	}, [])
 
 	return (
-		<img
-			src={ image.url }
-			alt={ image.alt }
-			width={ image.width }
-			height={ image.height }
-		/>
+		<>
+			{ placeholder && (
+				<LoadingSpinner width={ 100 } height={ 100 } />
+			) }
+			{ image && (
+				<img
+					src={ image.url }
+					alt={ image.alt }
+					width={ image.width }
+					height={ image.height }
+				/>
+			) }
+		</>
 	)
 }
 

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 
 import apiFetch from '@wordpress/api-fetch'
 import ArticleSummary from './ArticleSummary'
+import LoadingSpinner from './LoadingSpinner'
 
 const ArticleList = ({ count, tags, categories }) => {
 	const [ posts, setPosts ] = useState([])
+	const [ loading, setLoading ] = useState(true)
 
 	const apiUrl = new URL(`http://lichfieldlive.test/wp-json/wp/v2/posts`)
 	apiUrl.searchParams.append('per_page', count)
@@ -21,20 +23,26 @@ const ArticleList = ({ count, tags, categories }) => {
 		console.log(apiUrl)
 		apiFetch({ path: apiUrl.href })
 			.then((posts) => {
-				setPosts(posts);
+				setPosts(posts)
+				setLoading(false)
 			});
 	}, [])
 
 	return (
-		<ul>
-			{ posts.map((post) => {
-				return (
-					<li key={ post.id }>
-						<ArticleSummary article={ post } />
-					</li>
-				)
-			}) }
-		</ul>
+		<>
+			{ loading && <LoadingSpinner /> }
+			{ posts && (
+				<ul className='article-list'>
+					{ posts.map((post) => {
+						return (
+							<li key={ post.id }>
+								<ArticleSummary article={ post } />
+							</li>
+						)
+					}) }
+				</ul>
+			) }
+		</>
 	)
 }
 

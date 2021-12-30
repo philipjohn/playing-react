@@ -6,8 +6,10 @@ import he from 'he'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import FeaturedImage from './FeaturedImage'
+import LoadingSpinner from './LoadingSpinner'
 
 const Article = ({ id }) => {
+	const [ loading, setLoading ] = useState(true)
 	const [ article, setArticle ] = useState()
 	const [ category, setCategory ] = useState()
 	const [ tags, setTags ] = useState([])
@@ -24,6 +26,7 @@ const Article = ({ id }) => {
 				apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/users/${ data.author }` })
 					.then((author) => {
 						setAuthor(author);
+						setLoading(false)
 					});
 				return data.tags
 			})
@@ -51,7 +54,8 @@ const Article = ({ id }) => {
 
 	return (
 		<>
-			{ article &&
+			{ loading && <LoadingSpinner /> }
+			{ (!loading && article) &&
 				<div className='post'>
 					<div className="entry-header">
 						{ category &&

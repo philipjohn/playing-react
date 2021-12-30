@@ -48,7 +48,9 @@ p, h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6,
 .post .entry-header .category a,
-.post .tags span, .post .tags a {
+.post .tags span, .post .tags a,
+.section-header,
+.article-list .post .headline a {
 	font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
 }
 
@@ -73,7 +75,8 @@ h1, h2, h3, h4, h5, h6,
 
 .post .entry-header,
 .post .article-content,
-.post .tags {
+.post .tags,
+.screen-home {
 	margin-left: 1rem;
 	margin-right: 1rem;
 }
@@ -126,6 +129,42 @@ h1, h2, h3, h4, h5, h6,
 	padding: .25rem .5rem;
 	color: #1472ba;
 	text-decoration: none;
+}
+
+.section-header {
+	color: #1472ba;
+	border-bottom: 4px solid #ccc;
+	padding-bottom: .33rem;
+	text-transform: uppercase;
+	font-size: 1em;
+	margin-bottom: 1rem;
+}
+
+.article-list {
+  margin: 0;
+  padding: 0;
+}
+
+.article-list li {
+  list-style-type: none;
+}
+
+.article-list .post {
+  display: flex;
+  margin: 1rem 0;
+}
+
+.article-list .post img {
+  margin-right: 0.8rem;
+}
+
+.article-list .post .headline {
+	font-size: 1.2em;
+}
+
+.article-list .post .headline a {
+  text-decoration: none;
+  color: #111;
 }
 
 #footer {
