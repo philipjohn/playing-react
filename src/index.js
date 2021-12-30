@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import ReactDOM from 'react-dom'
 import Article from './components/Article'
+import Category from './components/Category'
 import AppStore, { AppContext } from './components/Context'
 import Header from './components/Header'
 import Home from './components/Home'
@@ -8,7 +9,8 @@ import './index.css'
 
 const App = () => {
 
-	const { screen, setScreen, article } = useContext(AppContext)
+	// eslint-disable-next-line no-unused-vars
+	const { screen, article, category } = useContext(AppContext)
 
 	return (
 		<>
@@ -16,6 +18,7 @@ const App = () => {
 
 			{ screen === 'home' && <Home /> }
 			{ screen === 'article' && <Article id={ article } /> }
+			{ screen === 'category' && <Category id={ category } /> }
 
 			{/* todo: replace with footer component */ }
 			<div id="footer">

@@ -10,6 +10,7 @@ const TagsList = ({ ids }) => {
 		fetchTags(ids).then(res => {
 			setTags(res)
 		})
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const fetchTags = (tags) => {

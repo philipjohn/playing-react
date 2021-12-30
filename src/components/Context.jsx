@@ -6,18 +6,31 @@ const AppStore = ({ children }) => {
 
 	const [ screen, setScreen ] = useState('home')
 	const [ article, setArticle ] = useState()
+	const [ category, setCategory ] = useState()
 
-	const showArticle = (id) => {
+	const goHome = () => {
+		setArticle(false)
+		setScreen('home')
+	}
+
+	const goArticle = (id) => {
 		setArticle(id)
 		setScreen('article')
+	}
+
+	const goCategory = (id) => {
+		setCategory(id)
+		setScreen('category')
 	}
 
 	return (
 		<AppContext.Provider value={ {
 			screen: screen,
-			setScreen: setScreen,
+			goHome: goHome,
 			article: article,
-			showArticle: showArticle
+			goArticle: goArticle,
+			category: category,
+			goCategory: goCategory
 		} }>
 			{ children }
 		</AppContext.Provider>

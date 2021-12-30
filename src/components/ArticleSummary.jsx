@@ -6,11 +6,11 @@ import he from 'he'
 
 const ArticleSummary = ({ article }) => {
 
-	const { showArticle } = useContext(AppContext)
+	const { goArticle } = useContext(AppContext)
 
 	const handleClick = (e) => {
 		e.preventDefault()
-		showArticle(parseInt(e.target.attributes[ "data-id" ].value))
+		goArticle(parseInt(e.target.attributes[ "data-id" ].value))
 	}
 
 	return (

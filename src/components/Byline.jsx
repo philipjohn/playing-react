@@ -20,6 +20,7 @@ const Byline = ({ id }) => {
 					sessionStorage.setItem(storedAuthorKey, JSON.stringify(author))
 				});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return <span className='byline'>by { author.name }</span>

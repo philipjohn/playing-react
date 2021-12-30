@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import apiFetch from '@wordpress/api-fetch'
+import ArticleList from './ArticleList'
 import md5 from 'js-md5'
-import { AppContext } from './Context'
+import apiFetch from '@wordpress/api-fetch'
 
-const CategoryLink = ({ id }) => {
+const Category = ({ id }) => {
 
 	const [ category, setCategory ] = useState()
-	const { goCategory } = useContext(AppContext)
 
 	useEffect(() => {
 		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/categories/${ id }`
@@ -23,29 +22,23 @@ const CategoryLink = ({ id }) => {
 					sessionStorage.setItem(storedCatKey, JSON.stringify(cat))
 				});
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-
-	const handleClick = (e) => {
-		e.preventDefault()
-		goCategory(parseInt(e.target.attributes[ "data-id" ].value))
-	}
 
 	return (
 		<>
 			{ category &&
-				<div className='category'>
-					<a href={ category.link } data-id={ category.id } onClick={ handleClick }>
-						{ category.name }
-					</a>
+				<div className='screen-category'>
+					<h1 className='section-header'>{ category.name }</h1>
+					<ArticleList count={ 10 } categories={ [ id ] } />
 				</div>
 			}
 		</>
 	)
 }
 
-CategoryLink.propTypes = {
+Category.propTypes = {
 	id: PropTypes.number.isRequired
 }
 
-export default CategoryLink
+export default Category
