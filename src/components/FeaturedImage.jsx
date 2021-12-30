@@ -62,8 +62,7 @@ const FeaturedImage = ({ id, innerWidth }) => {
 					{ image &&
 						<img
 							src={ image.source_url }
-							width={ image.width }
-							height={ image.height }
+						width={ Math.min(image.width, innerWidth) }
 							alt={ altText }
 						/>
 					}

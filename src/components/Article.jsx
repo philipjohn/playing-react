@@ -7,44 +7,32 @@ import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import FeaturedImage from './FeaturedImage'
 import LoadingSpinner from './LoadingSpinner'
+import CategoryLink from './CategoryLink'
+import Byline from './Byline'
+import TagsList from './TagsList'
+import md5 from 'js-md5'
 
 const Article = ({ id }) => {
 	const [ loading, setLoading ] = useState(true)
 	const [ article, setArticle ] = useState()
-	const [ category, setCategory ] = useState()
-	const [ tags, setTags ] = useState([])
-	const [ author, setAuthor ] = useState({})
 
 	useEffect(() => {
-		apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/posts/${ id }` })
-			.then((data) => {
-				setArticle(data)
-				apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/categories/${ data._yoast_wpseo_primary_category }` })
-					.then((cat) => {
-						setCategory(cat);
-					});
-				apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/users/${ data.author }` })
-					.then((author) => {
-						setAuthor(author);
-						setLoading(false)
-					});
-				return data.tags
-			})
-			.then((data) => {
-				return fetchTags(data).then(res => {
-					setTags(res)
+		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/posts/${ id }`
+		const storedArticleKey = md5(apiUrl)
+		const storedArticle = JSON.parse(sessionStorage.getItem(storedArticleKey))
+
+		if (storedArticle) {
+			setArticle(storedArticle)
+			setLoading(false)
+		} else {
+			apiFetch({ url: apiUrl })
+				.then((data) => {
+					sessionStorage.setItem(storedArticleKey, JSON.stringify(data))
+					setArticle(data)
+					setLoading(false)
 				})
-			});
+		}
 	}, [])
-
-	const fetchTags = (tags) => {
-		const promises = tags.map(e =>
-			apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/tags/${ e }` })
-				.then(res => res)
-		)
-
-		return Promise.all(promises)
-	}
 
 	const formatDate = (dateString) => {
 		TimeAgo.addDefaultLocale(en)
@@ -58,16 +46,13 @@ const Article = ({ id }) => {
 			{ (!loading && article) &&
 				<div className='post'>
 					<div className="entry-header">
-						{ category &&
-							<div className='category'>
-								<a href={ category.link }>
-									{ category.name }
-								</a>
-							</div>
-						}
+
+						<CategoryLink id={ parseInt(article._yoast_wpseo_primary_category) } />
+
 						<h1 className='entry-title'>{ he.decode(article.title.rendered) }</h1>
+
 						<div className='article-meta'>
-							<span className='byline'>by { author.name }</span>
+							<Byline id={ article.author } />
 							<span
 								className='published'
 								title={ new Date(article.date) }
@@ -77,11 +62,6 @@ const Article = ({ id }) => {
 						</div>
 					</div>
 
-					{/*
-						todo: insert featured image using new <FeaturedImage/> component
-						and prop passing window.innerWidth to choose a good image
-						size to retrieve.
-					*/}
 					<FeaturedImage
 						innerWidth={ window.innerWidth }
 						id={ article.featured_media }
@@ -92,20 +72,8 @@ const Article = ({ id }) => {
 						// Print the content, removing any embedded images.
 						dangerouslySetInnerHTML={ { __html: article.content.rendered.replace(/<img[^>]*>/g, "") } }
 					/>
-					{ tags &&
-						<div className='tags'>
-							<span>Tagged: </span>
-							<ul>
-								{ tags.map((tag) => (
-									<li key={ tag.id }>
-										<a href={ tag.id }>
-											{ tag.name }
-										</a>
-									</li>
-								)) }
-							</ul>
-						</div>
-					}
+
+					<TagsList ids={ article.tags } />
 				</div>
 			}
 		</>

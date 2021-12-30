@@ -8,7 +8,6 @@ const AppStore = ({ children }) => {
 	const [ article, setArticle ] = useState()
 
 	const showArticle = (id) => {
-		console.log(id)
 		setArticle(id)
 		setScreen('article')
 	}

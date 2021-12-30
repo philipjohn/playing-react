@@ -10,7 +10,6 @@ const ArticleSummary = ({ article }) => {
 
 	const handleClick = (e) => {
 		e.preventDefault()
-		console.log(parseInt(e.target.attributes[ "data-id" ].value))
 		showArticle(parseInt(e.target.attributes[ "data-id" ].value))
 	}
 

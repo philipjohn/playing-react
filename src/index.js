@@ -9,7 +9,7 @@ import './index.css'
 const App = () => {
 
 	const { screen, setScreen, article } = useContext(AppContext)
-	console.log(article)
+
 	return (
 		<>
 			<Header />

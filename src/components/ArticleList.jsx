@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import md5 from 'js-md5'
 
 import apiFetch from '@wordpress/api-fetch'
 import ArticleSummary from './ArticleSummary'
@@ -20,12 +21,21 @@ const ArticleList = ({ count, tags, categories }) => {
 	}
 
 	useEffect(() => {
-		console.log(apiUrl)
-		apiFetch({ path: apiUrl.href })
-			.then((posts) => {
-				setPosts(posts)
-				setLoading(false)
-			});
+
+		// Store the data in local storage to reduce remote API calls.
+		const stored_posts_key = md5(apiUrl.href)
+		const stored_posts = JSON.parse(sessionStorage.getItem(stored_posts_key))
+		if (stored_posts) {
+			setPosts(stored_posts)
+			setLoading(false)
+		} else {
+			apiFetch({ path: apiUrl.href })
+				.then((posts) => {
+					sessionStorage.setItem(stored_posts_key, JSON.stringify(posts))
+					setPosts(posts)
+					setLoading(false)
+				});
+		}
 	}, [])
 
 	return (
