@@ -11,6 +11,7 @@ import CategoryLink from './CategoryLink'
 import Byline from './Byline'
 import TagsList from './TagsList'
 import md5 from 'js-md5'
+import ArticleList from './ArticleList'
 
 const Article = ({ id }) => {
 	const [ loading, setLoading ] = useState(true)
@@ -76,6 +77,10 @@ const Article = ({ id }) => {
 					<TagsList ids={ article.tags } />
 				</div>
 			}
+			<div className='post latest-articles'>
+				<h1 className='section-header'>Latest Articles</h1>
+				<ArticleList count={ 5 } excludeTags={ [ 9074 ] } />
+			</div>
 		</>
 	)
 }
