@@ -8,6 +8,7 @@ const AppStore = ({ children }) => {
 	const [ article, setArticle ] = useState()
 	const [ category, setCategory ] = useState()
 	const [ tag, setTag ] = useState()
+	const [ author, setAuthor ] = useState()
 
 	const goHome = () => {
 		setArticle(false)
@@ -29,6 +30,11 @@ const AppStore = ({ children }) => {
 		setScreen('tag')
 	}
 
+	const goAuthor = (id) => {
+		setAuthor(id)
+		setScreen('author')
+	}
+
 	return (
 		<AppContext.Provider value={ {
 			screen: screen,
@@ -38,7 +44,9 @@ const AppStore = ({ children }) => {
 			category: category,
 			goCategory: goCategory,
 			tag: tag,
-			goTag: goTag
+			goTag: goTag,
+			author: author,
+			goAuthor: goAuthor
 		} }>
 			{ children }
 		</AppContext.Provider>

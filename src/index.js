@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import ReactDOM from 'react-dom'
 import Article from './components/Article'
+import Author from './components/Author'
 import Category from './components/Category'
 import AppStore, { AppContext } from './components/Context'
 import Header from './components/Header'
@@ -11,7 +12,7 @@ import './index.css'
 const App = () => {
 
 	// eslint-disable-next-line no-unused-vars
-	const { screen, article, category, tag } = useContext(AppContext)
+	const { screen, article, category, tag, author } = useContext(AppContext)
 
 	return (
 		<>
@@ -21,6 +22,7 @@ const App = () => {
 			{ screen === 'article' && <Article id={ article } /> }
 			{ screen === 'category' && <Category id={ category } /> }
 			{ screen === 'tag' && <Tag id={ tag } /> }
+			{ screen === 'author' && <Author id={ author } /> }
 
 			{/* todo: replace with footer component */ }
 			<div id="footer">

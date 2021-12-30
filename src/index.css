@@ -78,7 +78,8 @@ h1, h2, h3, h4, h5, h6,
 .post .tags,
 .screen-home,
 .screen-category,
-.screen-tag {
+.screen-tag,
+.screen-author {
 	margin-left: 1rem;
 	margin-right: 1rem;
 }

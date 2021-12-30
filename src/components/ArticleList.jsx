@@ -7,7 +7,7 @@ import apiFetch from '@wordpress/api-fetch'
 import ArticleSummary from './ArticleSummary'
 import LoadingSpinner from './LoadingSpinner'
 
-const ArticleList = ({ count, tags, categories }) => {
+const ArticleList = ({ count, tags, categories, authors }) => {
 	const [ posts, setPosts ] = useState([])
 	const [ loading, setLoading ] = useState(true)
 
@@ -18,6 +18,9 @@ const ArticleList = ({ count, tags, categories }) => {
 	}
 	if (categories) {
 		apiUrl.searchParams.append("categories", categories.join(','));
+	}
+	if (authors) {
+		apiUrl.searchParams.append("author", authors.join(','));
 	}
 
 	useEffect(() => {
@@ -63,7 +66,8 @@ ArticleList.defaultProps = {
 ArticleList.propTypes = {
 	count: PropTypes.number,
 	tags: PropTypes.array,
-	categories: PropTypes.array
+	categories: PropTypes.array,
+	authors: PropTypes.array
 }
 
 export default ArticleList
