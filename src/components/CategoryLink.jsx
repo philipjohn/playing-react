@@ -7,7 +7,7 @@ import { AppContext } from './Context'
 const CategoryLink = ({ id }) => {
 
 	const [ category, setCategory ] = useState()
-	const { goCategory } = useContext(AppContext)
+	const { goNavigate } = useContext(AppContext)
 
 	useEffect(() => {
 		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/categories/${ id }`
@@ -24,11 +24,11 @@ const CategoryLink = ({ id }) => {
 				});
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [ id ])
 
 	const handleClick = (e) => {
 		e.preventDefault()
-		goCategory(parseInt(e.target.attributes[ "data-id" ].value))
+		goNavigate('category', parseInt(e.target.attributes[ "data-id" ].value))
 	}
 
 	return (

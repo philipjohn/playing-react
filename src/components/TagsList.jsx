@@ -6,14 +6,14 @@ import { AppContext } from './Context'
 
 const TagsList = ({ ids }) => {
 	const [ tags, setTags ] = useState([])
-	const { goTag } = useContext(AppContext)
+	const { goNavigate } = useContext(AppContext)
 
 	useEffect(() => {
 		fetchTags(ids).then(res => {
 			setTags(res)
 		})
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [ ids ])
 
 	const fetchTags = (tags) => {
 		const promises = tags.map(fetchTag)
@@ -34,7 +34,7 @@ const TagsList = ({ ids }) => {
 
 	const handleClick = (e) => {
 		e.preventDefault()
-		goTag(parseInt(e.target.attributes[ 'data-id' ].value))
+		goNavigate('tag', parseInt(e.target.attributes[ 'data-id' ].value))
 	}
 
 	return (

@@ -6,7 +6,7 @@ import { AppContext } from './Context'
 
 const Byline = ({ id }) => {
 	const [ author, setAuthor ] = useState({})
-	const { goAuthor } = useContext(AppContext)
+	const { goNavigate } = useContext(AppContext)
 
 	useEffect(() => {
 		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/users/${ id }`
@@ -27,7 +27,7 @@ const Byline = ({ id }) => {
 
 	const handleClick = (e) => {
 		e.preventDefault()
-		goAuthor(parseInt(e.target.attributes[ 'data-id' ].value))
+		goNavigate('author', parseInt(e.target.attributes[ 'data-id' ].value))
 	}
 
 	return (

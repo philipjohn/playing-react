@@ -35,7 +35,7 @@ const Article = ({ id }) => {
 					setLoading(false)
 				})
 		}
-	}, [])
+	}, [ id ])
 
 	const formatDate = (dateString) => {
 		const timeAgo = new TimeAgo('en-GB')

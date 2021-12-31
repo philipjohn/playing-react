@@ -10,43 +10,44 @@ const AppStore = ({ children }) => {
 	const [ tag, setTag ] = useState()
 	const [ author, setAuthor ] = useState()
 
-	const goHome = () => {
-		setArticle(false)
-		setScreen('home')
-	}
-
-	const goArticle = (id) => {
-		setArticle(id)
-		setScreen('article')
-	}
-
-	const goCategory = (id) => {
-		setCategory(id)
-		setScreen('category')
-	}
-
-	const goTag = (id) => {
-		setTag(id)
-		setScreen('tag')
-	}
-
-	const goAuthor = (id) => {
-		setAuthor(id)
-		setScreen('author')
+	const goNavigate = (screen, id) => {
+		switch (screen) {
+			case "article":
+				console.log('switching article')
+				setScreen('article')
+				setArticle(id)
+				document.body.scrollTop = 0; // For Safari
+				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+				break;
+			case "category":
+				setScreen('category')
+				setCategory(id)
+				break;
+			case "tag":
+				setScreen('tag')
+				setTag(id)
+				break;
+			case "author":
+				setScreen('author')
+				setAuthor(id)
+				break;
+			default:
+				setScreen('home')
+				setArticle(false)
+				setCategory(false)
+				setTag(false)
+				setAuthor(false)
+		}
 	}
 
 	return (
 		<AppContext.Provider value={ {
+			goNavigate: goNavigate,
 			screen: screen,
-			goHome: goHome,
 			article: article,
-			goArticle: goArticle,
 			category: category,
-			goCategory: goCategory,
 			tag: tag,
-			goTag: goTag,
-			author: author,
-			goAuthor: goAuthor
+			author: author
 		} }>
 			{ children }
 		</AppContext.Provider>
