@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { AppContext } from './Context'
 
 const Header = () => {
-	const { goHome } = useContext(AppContext)
+	const { goNavigate } = useContext(AppContext)
 	return (
 		<div id='header'>
 			<a
 				href="/"
 				className='logo-link'
-				onClick={ () => { goHome() } }
+				onClick={ () => { goNavigate('home') } }
 			>
 				<img
 					src='LichfieldLiveLogo_White.webp'
