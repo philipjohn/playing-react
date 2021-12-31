@@ -80,7 +80,7 @@ const Article = ({ id }) => {
 			}
 			<div className='post latest-articles'>
 				<h1 className='section-header'>Latest Articles</h1>
-				<ArticleList count={ 5 } excludeTags={ [ 9074 ] } />
+				<ArticleList count={ 5 } />
 			</div>
 
 			{ article && <Comments postId={ article.id } /> }
