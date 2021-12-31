@@ -4,10 +4,10 @@ import '../spinner.css'
 
 const LoadingSpinner = ({ width, height }) => {
 	const style = {
-		"min-width": width ?? "100%",
-		"max-width": width ?? "100%",
-		"min-height": height ?? "250",
-		"max-height": height ?? "250"
+		"minWidth": width ?? "100%",
+		"maxWidth": width ?? "100%",
+		"minHeight": height ?? "250",
+		"maxHeight": height ?? "250"
 	}
 	return (
 		<div style={ style } className='loading-spinner'>
