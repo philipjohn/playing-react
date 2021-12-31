@@ -35,7 +35,6 @@ const Comments = ({ postId }) => {
 	return (
 		<>
 			{ loading && <LoadingSpinner /> }
-			{ (!loading && comments.length < 1) && <div id="comments">No comments</div> }
 			{ (!loading && comments.length > 0) && <CommentsList comments={ comments } /> }
 		</>
 	)

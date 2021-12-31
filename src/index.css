@@ -123,6 +123,16 @@ h1, h2, h3, h4, h5, h6,
 	font-style: normal
 }
 
+.post .article-content .wp-block-quote {
+  border-left: 2px solid #1472ba;
+  padding-left: 1em;
+}
+
+.post .article-content > * {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 .post .tags span {
 	text-transform: uppercase;
 	font-weight: bold;
@@ -181,6 +191,22 @@ h1, h2, h3, h4, h5, h6,
 .article-list .post .headline a {
   text-decoration: none;
   color: #111;
+}
+
+.comment-meta .author {
+  display: block;
+  font-weight: bold;
+}
+
+.comment-meta .date {
+  display: block;
+  font-size: 0.8em;
+  color: #111;
+}
+
+.comment-text {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
 }
 
 #footer {

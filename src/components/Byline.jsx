@@ -32,7 +32,7 @@ const Byline = ({ id }) => {
 
 	return (
 		<span className='byline'>
-			by
+			by&nbsp;
 			<a href={ author.link } data-id={ author.id } onClick={ handleClick }>
 				{ author.name }
 			</a>

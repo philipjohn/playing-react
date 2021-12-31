@@ -42,6 +42,13 @@ const Article = ({ id }) => {
 		return timeAgo.format(new Date(dateString))
 	}
 
+	const formatContent = (content) => {
+		content = content.replace(/<img[^>]*>/g, "")
+		content = content.replace(/<figure[^>]*>[^>]*<\/figure>/g, "")
+		content = content.replace(/<figcaption[^>]*>[^>]*<\/figcaption>/g, "")
+		return content
+	}
+
 	return (
 		<>
 			{ loading && <LoadingSpinner /> }
@@ -72,7 +79,7 @@ const Article = ({ id }) => {
 					<div
 						className='article-content'
 						// Print the content, removing any embedded images.
-						dangerouslySetInnerHTML={ { __html: article.content.rendered.replace(/<img[^>]*>/g, "") } }
+						dangerouslySetInnerHTML={ { __html: formatContent(article.content.rendered) } }
 					/>
 
 					<TagsList ids={ article.tags } />
