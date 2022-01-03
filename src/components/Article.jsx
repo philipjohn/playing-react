@@ -13,9 +13,12 @@ import TagsList from './TagsList'
 import md5 from 'js-md5'
 import ArticleList from './ArticleList'
 import Comments from './Comments'
+import { useParams } from 'react-router-dom'
 TimeAgo.addDefaultLocale(en)
 
-const Article = ({ id }) => {
+const Article = () => {
+	const { id } = useParams()
+
 	const [ loading, setLoading ] = useState(true)
 	const [ article, setArticle ] = useState()
 

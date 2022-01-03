@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
 import md5 from 'js-md5'
-import { AppContext } from './Context'
+import { Link } from 'react-router-dom'
 
 const Byline = ({ id }) => {
 	const [ author, setAuthor ] = useState({})
-	const { goNavigate } = useContext(AppContext)
 
 	useEffect(() => {
 		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/users/${ id }`
@@ -25,17 +24,14 @@ const Byline = ({ id }) => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	const handleClick = (e) => {
-		e.preventDefault()
-		goNavigate('author', parseInt(e.target.attributes[ 'data-id' ].value))
-	}
+	const toLink = `/author/${ id }`
 
 	return (
 		<span className='byline'>
 			by&nbsp;
-			<a href={ author.link } data-id={ author.id } onClick={ handleClick }>
+			<Link to={ toLink } >
 				{ author.name }
-			</a>
+			</Link>
 		</span>
 	)
 

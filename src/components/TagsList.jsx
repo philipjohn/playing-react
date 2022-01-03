@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
 import md5 from 'js-md5'
-import { AppContext } from './Context'
+import { Link } from 'react-router-dom'
 
 const TagsList = ({ ids }) => {
 	const [ tags, setTags ] = useState([])
-	const { goNavigate } = useContext(AppContext)
 
 	useEffect(() => {
 		fetchTags(ids).then(res => {
@@ -32,11 +31,6 @@ const TagsList = ({ ids }) => {
 			})
 	}
 
-	const handleClick = (e) => {
-		e.preventDefault()
-		goNavigate('tag', parseInt(e.target.attributes[ 'data-id' ].value))
-	}
-
 	return (
 		<>
 			{ tags &&
@@ -45,9 +39,9 @@ const TagsList = ({ ids }) => {
 					<ul>
 						{ tags.map((tag) => (
 							<li key={ tag.id }>
-								<a href={ tag.link } data-id={ tag.id } onClick={ handleClick }>
+								<Link to={ `/tag/${ tag.id }` }>
 									{ tag.name }
-								</a>
+								</Link>
 							</li>
 						)) }
 					</ul>

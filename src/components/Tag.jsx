@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import ArticleList from './ArticleList'
 import md5 from 'js-md5'
 import apiFetch from '@wordpress/api-fetch'
+import { useParams } from 'react-router-dom'
 
-const Tag = ({ id }) => {
+const Tag = () => {
+
+	const { id } = useParams()
 
 	const [ tag, setTag ] = useState()
 

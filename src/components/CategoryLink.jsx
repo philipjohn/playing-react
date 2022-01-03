@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
 import md5 from 'js-md5'
-import { AppContext } from './Context'
+import { Link } from 'react-router-dom'
 
 const CategoryLink = ({ id }) => {
 
 	const [ category, setCategory ] = useState()
-	const { goNavigate } = useContext(AppContext)
 
 	useEffect(() => {
 		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/categories/${ id }`
@@ -26,18 +25,15 @@ const CategoryLink = ({ id }) => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ id ])
 
-	const handleClick = (e) => {
-		e.preventDefault()
-		goNavigate('category', parseInt(e.target.attributes[ "data-id" ].value))
-	}
+	const toLink = `/category/${ id }`
 
 	return (
 		<>
 			{ category &&
 				<div className='category'>
-					<a href={ category.link } data-id={ category.id } onClick={ handleClick }>
+					<Link to={ toLink }>
 						{ category.name }
-					</a>
+					</Link>
 				</div>
 			}
 		</>

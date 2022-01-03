@@ -1,14 +1,12 @@
-import React, { useContext } from 'react'
-import { AppContext } from './Context'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
-	const { goNavigate } = useContext(AppContext)
 	return (
 		<div id='header'>
-			<a
-				href="/"
+			<NavLink
+				to='/'
 				className='logo-link'
-				onClick={ () => { goNavigate('home') } }
 			>
 				<img
 					src='LichfieldLiveLogo_White.webp'
@@ -17,7 +15,7 @@ const Header = () => {
 					width={ 140 }
 					className='logo'
 				/>
-			</a>
+			</NavLink>
 		</div>
 	)
 }
