@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Article from './components/Article'
 import Author from './components/Author'
 import Category from './components/Category'
 import Header from './components/Header'
 import Home from './components/Home'
+import Search from './components/Search'
 import Tag from './components/Tag'
 import './index.css'
 
@@ -14,14 +15,21 @@ const App = () => {
 	return (
 		<>
 			<Router>
-			<Header />
+				<Header />
 
 				<Routes>
 					<Route index path='/' element={ <Home /> }></Route>
-					<Route index path='/article/:id' element={ <Article /> }></Route>
-					<Route index path='/category/:id' element={ <Category /> }></Route>
-					<Route index path='/tag/:id' element={ <Tag /> }></Route>
-					<Route index path='/author/:id' element={ <Author /> }></Route>
+					<Route path='/article/:id' element={ <Article /> }></Route>
+					<Route path='/category/:id' element={ <Category /> }></Route>
+					<Route path='/tag/:id' element={ <Tag /> }></Route>
+					<Route path='/author/:id' element={ <Author /> }></Route>
+					<Route path='/search/:searchTerm' element={ <Search /> }></Route>
+					<Route path='*' element={
+						<>
+							<h1>Page not found!</h1>
+							<p>Please go back and try something else.</p>
+						</>
+					} />
 				</Routes>
 			</Router>
 

@@ -88,18 +88,16 @@ const Article = () => {
 					<TagsList ids={ article.tags } />
 				</div>
 			}
+
+			{ article && <Comments postId={ article.id } /> }
+
 			<div className='post latest-articles'>
 				<h1 className='section-header'>Latest Articles</h1>
 				<ArticleList count={ 5 } />
 			</div>
 
-			{ article && <Comments postId={ article.id } /> }
 		</>
 	)
-}
-
-Article.propTypes = {
-	id: PropTypes.number.isRequired
 }
 
 export default Article

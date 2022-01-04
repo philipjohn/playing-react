@@ -8,12 +8,14 @@ const ArticleSummary = ({ article }) => {
 
 	const linkTo = `/article/${ article.id }`
 
+	const title = article.title.rendered ?? article.title
+
 	return (
 		<div className='post'>
-			<FeaturedImageThumbnail id={ article.featured_media } />
+			{ article.featured_media && <FeaturedImageThumbnail id={ article.featured_media } /> }
 			<h2 className='headline'>
 				<Link to={ linkTo }>
-					{ he.decode(article.title.rendered) }
+					{ he.decode(title) }
 				</Link>
 			</h2>
 		</div>

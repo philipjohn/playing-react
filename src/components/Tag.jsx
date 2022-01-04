@@ -40,8 +40,4 @@ const Tag = () => {
 	)
 }
 
-Tag.propTypes = {
-	id: PropTypes.number.isRequired
-}
-
 export default Tag
