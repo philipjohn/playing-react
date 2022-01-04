@@ -194,7 +194,8 @@ h1, h2, h3, h4, h5, h6,
   color: #111;
 }
 
-.pagination .previous {
+.pagination .previous,
+.pagination .page {
   margin-right: 1em;
 }
 

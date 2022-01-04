@@ -23,8 +23,11 @@ const App = () => {
 					<Route path='/category/:id' element={ <Category /> } />
 					<Route path='/tag/:id' element={ <Tag /> } />
 					<Route path='/author/:id' element={ <Author /> } />
-					<Route path='/search/:searchTerm' element={ <Search /> } />
-					<Route path='/search/:searchTerm/:page' element={ <Search /> } />
+					<Route path='/search'>
+						<Route index element={ <p>Please search for something.</p> } />
+						<Route path=':searchTerm' element={ <Search /> } />
+						<Route path=':searchTerm/:page' element={ <Search /> } />
+					</Route>
 					<Route path='*' element={
 						<>
 							<h1>Page not found!</h1>

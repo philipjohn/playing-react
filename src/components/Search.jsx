@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import md5 from 'js-md5'
 import apiFetch from '@wordpress/api-fetch'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner'
 import ArticleSummary from './ArticleSummary'
+import Pagination from './Pagination'
 
 const Search = () => {
 
@@ -46,6 +47,11 @@ const Search = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ page ])
 
+	const handleNextClick = () => {
+		setLoading(true)
+		setSearch()
+	}
+
 	return (
 		<>
 			<div className='screen-search'>
@@ -59,23 +65,12 @@ const Search = () => {
 						)) }
 						</ul>
 
-						<div className="pagination">
-							{ page > 1 &&
-								<Link
-									to={ navUrls.previous }
-									className='previous'
-								>
-									Previous
-								</Link>
-							}
-							<Link
-								to={ navUrls.next }
-								className='next'
-								onClick={ () => {
-									setLoading(true)
-									setSearch()
-								} }>Next</Link>
-						</div>
+						<Pagination
+							page={ page }
+							prevLink={ navUrls.previous }
+							nextLink={ navUrls.next }
+							handleNextClick={ handleNextClick }
+						/>
 					</>
 				) }
 			</div>
