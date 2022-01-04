@@ -194,6 +194,10 @@ h1, h2, h3, h4, h5, h6,
   color: #111;
 }
 
+.pagination .previous {
+  margin-right: 1em;
+}
+
 .comment-meta .author {
   display: block;
   font-weight: bold;

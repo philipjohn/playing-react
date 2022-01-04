@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Article from './components/Article'
 import Author from './components/Author'
 import Category from './components/Category'
@@ -18,12 +18,13 @@ const App = () => {
 				<Header />
 
 				<Routes>
-					<Route index path='/' element={ <Home /> }></Route>
-					<Route path='/article/:id' element={ <Article /> }></Route>
-					<Route path='/category/:id' element={ <Category /> }></Route>
-					<Route path='/tag/:id' element={ <Tag /> }></Route>
-					<Route path='/author/:id' element={ <Author /> }></Route>
-					<Route path='/search/:searchTerm' element={ <Search /> }></Route>
+					<Route index element={ <Home /> } />
+					<Route path='/article/:id' element={ <Article /> } />
+					<Route path='/category/:id' element={ <Category /> } />
+					<Route path='/tag/:id' element={ <Tag /> } />
+					<Route path='/author/:id' element={ <Author /> } />
+					<Route path='/search/:searchTerm' element={ <Search /> } />
+					<Route path='/search/:searchTerm/:page' element={ <Search /> } />
 					<Route path='*' element={
 						<>
 							<h1>Page not found!</h1>

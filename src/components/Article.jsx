@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import apiFetch from '@wordpress/api-fetch'
 import he from 'he'
 import TimeAgo from 'javascript-time-ago'

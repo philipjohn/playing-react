@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import ArticleList from './ArticleList'
 import md5 from 'js-md5'
 import apiFetch from '@wordpress/api-fetch'
