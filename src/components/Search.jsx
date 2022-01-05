@@ -47,17 +47,18 @@ const Search = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ page ])
 
-	const handleNextClick = () => {
+	const handlePaginationClick = () => {
 		setLoading(true)
-		setSearch()
 	}
 
 	return (
 		<>
 			<div className='screen-search'>
-				<h1 className='section-header'>Search results for "{ searchTerm }"</h1>
+				<h1 className='section-header'>
+					{ loading ? 'Searching' : 'Search results' } for "{ searchTerm }"
+				</h1>
 				{ loading && <LoadingSpinner /> }
-				{ search && (
+				{ (search && !loading) && (
 					<>
 						<ul className='article-list'>
 						{ search.map((article) => (
@@ -69,7 +70,7 @@ const Search = () => {
 							page={ page }
 							prevLink={ navUrls.previous }
 							nextLink={ navUrls.next }
-							handleNextClick={ handleNextClick }
+							handleClick={ handlePaginationClick }
 						/>
 					</>
 				) }

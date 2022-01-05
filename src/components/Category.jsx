@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 
 const Category = () => {
 
-	const { id } = useParams()
+	const { id, page = 1 } = useParams()
 
 	const [ category, setCategory ] = useState()
 
@@ -32,7 +32,12 @@ const Category = () => {
 			{ category &&
 				<div className='screen-category'>
 					<h1 className='section-header'>{ category.name }</h1>
-					<ArticleList count={ 10 } categories={ [ id ] } />
+					<ArticleList
+						count={ 10 }
+						page={ parseInt(page) }
+						type='category'
+						ids={ [ id ] }
+					/>
 				</div>
 			}
 		</>

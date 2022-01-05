@@ -32,7 +32,7 @@ const Author = () => {
 			{ author &&
 				<div className='screen-author'>
 					<h1 className='section-header'>{ author.name }</h1>
-					<ArticleList count={ 10 } authors={ [ id ] } />
+					<ArticleList count={ 10 } type='author' ids={ [ id ] } />
 				</div>
 			}
 		</>

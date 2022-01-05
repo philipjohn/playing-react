@@ -32,7 +32,7 @@ const Tag = () => {
 			{ tag &&
 				<div className='screen-tag'>
 					<h1 className='section-header'>{ tag.name }</h1>
-					<ArticleList count={ 10 } tags={ [ id ] } />
+					<ArticleList count={ 10 } type='tag' ids={ [ id ] } />
 				</div>
 			}
 		</>

@@ -1,53 +1,48 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import md5 from 'js-md5'
 
-import apiFetch from '@wordpress/api-fetch'
 import ArticleSummary from './ArticleSummary'
 import LoadingSpinner from './LoadingSpinner'
+import { WP_API } from '../data'
 
-const ArticleList = ({ count, tags, categories, authors, excludeTags }) => {
+const ArticleList = ({ count, page, type, ids, exclude }) => {
 	const [ posts, setPosts ] = useState([])
 	const [ loading, setLoading ] = useState(true)
 
-	const apiUrl = new URL(`http://lichfieldlive.test/wp-json/wp/v2/posts`)
-	apiUrl.searchParams.append('per_page', count)
-	if (tags) {
-		apiUrl.searchParams.append('tags', tags.join(','))
-	}
-	if (categories) {
-		apiUrl.searchParams.append('categories', categories.join(','))
-	}
-	if (authors) {
-		apiUrl.searchParams.append('author', authors.join(','))
-	}
-	if (excludeTags) {
-		apiUrl.searchParams.append('tags_exclude', excludeTags.join(','))
-	}
-
 	useEffect(() => {
 
-		// Store the data in local storage to reduce remote API calls.
-		const stored_posts_key = md5(apiUrl.href)
-		const stored_posts = JSON.parse(sessionStorage.getItem(stored_posts_key))
-		if (stored_posts) {
-			setPosts(stored_posts)
-			setLoading(false)
-		} else {
-			apiFetch({ path: apiUrl.href })
-				.then((posts) => {
-					sessionStorage.setItem(stored_posts_key, JSON.stringify(posts))
-					setPosts(posts)
-					setLoading(false)
-				});
+		let api = new WP_API()
+		if (count) { api.setCount(count) }
+		if (page) { api.setPage(page) }
+		if (exclude) { api.excludePosts(exclude) }
+
+		switch (type) {
+			case 'tag':
+				api.setTags(ids)
+				break
+			case 'category':
+				api.setCategories(ids)
+				break
+			case 'author':
+				api.setAuthors(ids)
+				break
+			default:
+			// latest, do nothing
 		}
+
+		api.getPosts().then((res) => {
+			setPosts(res)
+			setLoading(false)
+		})
+
+
 	}, [])
 
 	return (
 		<>
 			{ loading && <LoadingSpinner /> }
-			{ posts && (
+			{ (posts && !loading) && (
 				<ul className='article-list'>
 					{ posts.map((post) => {
 						return (
@@ -68,6 +63,7 @@ ArticleList.defaultProps = {
 
 ArticleList.propTypes = {
 	count: PropTypes.number,
+	page: PropTypes.number,
 	tags: PropTypes.array,
 	categories: PropTypes.array,
 	authors: PropTypes.array
