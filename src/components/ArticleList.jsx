@@ -6,7 +6,7 @@ import ArticleSummary from './ArticleSummary'
 import LoadingSpinner from './LoadingSpinner'
 import { WP_API } from '../data'
 
-const ArticleList = ({ count, page, type, ids, exclude }) => {
+const ArticleList = ({ count, page, type, ids, exclude, searchTerm }) => {
 	const [ posts, setPosts ] = useState([])
 	const [ loading, setLoading ] = useState(true)
 
@@ -26,6 +26,9 @@ const ArticleList = ({ count, page, type, ids, exclude }) => {
 				break
 			case 'author':
 				api.setAuthors(ids)
+				break
+			case 'search':
+				api.setSearchTerm(searchTerm)
 				break
 			default:
 			// latest, do nothing
