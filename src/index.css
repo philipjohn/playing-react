@@ -88,18 +88,15 @@ p, h1, h2, h3, h4, h5, h6 {
 	border-bottom: 4px solid #ccc;
 	text-transform: uppercase;
 	font-size: 1em;
+	margin-bottom: 1em;
+}
+
+.article-list {
+	margin-bottom: 1.5em;
 }
 
 .article-list li {
 	list-style-type: none;
-}
-
-.article-list .post {
-	margin: 1rem 0;
-}
-
-.article-list .post img {
-	margin-right: 0.8rem;
 }
 
 .article-list .post .headline {
@@ -127,4 +124,56 @@ p, h1, h2, h3, h4, h5, h6 {
 
 #footer {
 	border-top: 3px solid gray;
+}
+
+/**
+ * CSS Grid
+ */
+ #header {
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.screen-home {
+	padding: 1em 0.5em;
+}
+
+.article-list {
+	padding: 0;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-gap: 1em;
+}
+
+.article-list .post {
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	grid-gap: 1em;
+}
+
+@media ( min-width: 768px ) {
+
+	.article-list {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+}
+
+@media ( min-width: 1024px ) {
+
+	.section-header {
+		width: calc( 80vw + 1em );
+		margin: 0 auto;
+		margin-bottom: 1em;
+	}
+
+	.article-list {
+		grid-template-columns: repeat( 2, 40vw );
+		justify-content: center;
+	}
+
 }
