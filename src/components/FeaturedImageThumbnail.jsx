@@ -12,7 +12,7 @@ const FeaturedImageThumbnail = ({ id }) => {
 
 	useEffect(() => {
 		// Store the data in local storage to reduce remote API calls.
-		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/media/${ id }`
+		const apiUrl = `http://lichfieldlive.local/wp-json/wp/v2/media/${ id }`
 		const storedImageKey = md5(apiUrl)
 		const storedImage = JSON.parse(sessionStorage.getItem(storedImageKey))
 		if (storedImage) {

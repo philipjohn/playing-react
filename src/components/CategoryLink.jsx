@@ -9,7 +9,7 @@ const CategoryLink = ({ id }) => {
 	const [ category, setCategory ] = useState()
 
 	useEffect(() => {
-		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/categories/${ id }`
+		const apiUrl = `http://lichfieldlive.local/wp-json/wp/v2/categories/${ id }`
 		const storedCatKey = md5(apiUrl)
 		const storedCat = JSON.parse(sessionStorage.getItem(storedCatKey))
 

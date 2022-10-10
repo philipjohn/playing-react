@@ -20,7 +20,7 @@ const TagsList = ({ ids }) => {
 	}
 
 	const fetchTag = (tag) => {
-		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/tags/${ tag }`
+		const apiUrl = `http://lichfieldlive.local/wp-json/wp/v2/tags/${ tag }`
 		const storedTagKey = md5(apiUrl)
 		const storedTag = JSON.parse(sessionStorage.getItem(storedTagKey))
 

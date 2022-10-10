@@ -11,7 +11,7 @@ const Tag = () => {
 	const [ tag, setTag ] = useState()
 
 	useEffect(() => {
-		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/tags/${ id }`
+		const apiUrl = `http://lichfieldlive.local/wp-json/wp/v2/tags/${ id }`
 		const storedTagKey = md5(apiUrl)
 		const storedTag = JSON.parse(sessionStorage.getItem(storedTagKey))
 

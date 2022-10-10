@@ -1,7 +1,7 @@
 import apiFetch from "@wordpress/api-fetch"
 import md5 from "js-md5"
 
-const apiRoot = 'http://lichfieldlive.test/wp-json/wp/v2'
+const apiRoot = 'http://lichfieldlive.local/wp-json/wp/v2'
 
 export class WP_API {
 	constructor() {

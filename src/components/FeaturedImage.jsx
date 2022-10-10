@@ -10,7 +10,7 @@ const FeaturedImage = ({ id, innerWidth }) => {
 	const [ altText, setAltText ] = useState()
 
 	useEffect(() => {
-		apiFetch({ url: `http://lichfieldlive.test/wp-json/wp/v2/media/${ id }` })
+		apiFetch({ url: `http://lichfieldlive.local/wp-json/wp/v2/media/${ id }` })
 			.then((data) => {
 
 				setAltText(data.alt_text)

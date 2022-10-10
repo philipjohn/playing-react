@@ -11,7 +11,7 @@ const Author = () => {
 	const [ author, setAuthor ] = useState()
 
 	useEffect(() => {
-		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/users/${ id }`
+		const apiUrl = `http://lichfieldlive.local/wp-json/wp/v2/users/${ id }`
 		const storedAuthorKey = md5(apiUrl)
 		const storedAuthor = JSON.parse(sessionStorage.getItem(storedAuthorKey))
 

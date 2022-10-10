@@ -10,7 +10,7 @@ const Comments = ({ postId }) => {
 	const [ loading, setLoading ] = useState(true)
 
 	useEffect(() => {
-		const apiUrl = new URL('http://lichfieldlive.test/wp-json/wp/v2/comments')
+		const apiUrl = new URL('http://lichfieldlive.local/wp-json/wp/v2/comments')
 		apiUrl.searchParams.append('post', postId)
 		apiUrl.searchParams.append('context', 'view')
 		apiUrl.searchParams.append('per_page', '100')

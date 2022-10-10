@@ -22,7 +22,7 @@ const Article = () => {
 	const [ article, setArticle ] = useState()
 
 	useEffect(() => {
-		const apiUrl = `http://lichfieldlive.test/wp-json/wp/v2/posts/${ id }`
+		const apiUrl = `http://lichfieldlive.local/wp-json/wp/v2/posts/${ id }`
 		const storedArticleKey = md5(apiUrl)
 		const storedArticle = JSON.parse(sessionStorage.getItem(storedArticleKey))
 
