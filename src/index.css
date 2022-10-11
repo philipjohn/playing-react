@@ -88,6 +88,11 @@ p, h1, h2, h3, h4, h5, h6 {
 	border-bottom: 4px solid #ccc;
 	text-transform: uppercase;
 	font-size: 1em;
+	margin-bottom: 0.5em;
+}
+
+.article-list {
+	padding-left: 0;
 }
 
 .article-list li {
@@ -114,4 +119,55 @@ p, h1, h2, h3, h4, h5, h6 {
 
 #footer {
 	border-top: 3px solid gray;
+}
+
+/**
+ * Flexbox
+ */
+#header {
+	display: flex;
+	justify-content: center;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.screen-home {
+	padding: 1em 0.5em;
+}
+
+.post {
+	display: flex;
+	gap: 1em;
+	padding-bottom: 1em;
+}
+
+@media ( min-width: 768px ) {
+
+	.article-list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.article-list > li {
+		flex-basis: 50%;
+	}
+
+}
+
+@media ( min-width: 1024px ) {
+
+	.section-header {
+		width: calc( 80vw + 1em );
+		margin: 0 auto;
+		margin-bottom: 1em;
+	}
+
+	.article-list {
+		justify-content: center;
+	}
+
+	.article-list > li {
+		flex-basis: 40%;
+	}
+
 }
