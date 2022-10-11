@@ -7,7 +7,7 @@ https://www.joshwcomeau.com/css/custom-css-reset/
 }
 * {
 	margin: 0;
-	font-family: georgia, garamond, "Times New Roman", serif
+	font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
 }
 html, body {
 	height: 100%;
@@ -33,38 +33,16 @@ p, h1, h2, h3, h4, h5, h6 {
 /**
 * Custom styles
 */
-
 #header {
 	background-color: #1472ba;
-	padding-bottom: 5px;
-	padding-top: 10px;
-	text-align: center;
-	margin-bottom: 1.5rem;
-}
-
-#header .logo-link {
-	display: inline-block;
-}
-
-h1, h2, h3, h4, h5, h6,
-.post .entry-header .category a,
-.post .tags span, .post .tags a,
-.section-header,
-.article-list .post .headline a,
-.comment-meta .author, .comment-meta .date {
-	font-family: -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
 }
 
 .post .entry-header {
-	border-bottom:  1px solid #ddd;
-	padding-bottom: 1rem;
+	border-bottom:	1px solid #ddd;
 }
 
 .post .entry-header .category a {
 	text-decoration: none;
-	display: inline-block;
-	margin: 0 .25rem .25rem 0;
-	padding: .35em .5em;
 	background-color: #1472ba;
 	color: #fff;
 	transition: color 110ms ease-in-out;
@@ -74,64 +52,20 @@ h1, h2, h3, h4, h5, h6,
 	line-height: 1.2;
 }
 
-.post .entry-header,
-.post .article-content,
-.post .tags,
-.screen-home,
-.screen-category,
-.screen-tag,
-.screen-author,
-.post.latest-articles,
-#comments,
-.screen-search {
-	margin-left: 1rem;
-	margin-right: 1rem;
-}
-
-.post .entry-header .entry-title {
-	margin-bottom: 0.5em;
-}
-
 .post .article-meta {
 	color: #515151;
 }
 
-.post .article-meta .byline {
-	display: block;
-}
-
-.post .article-meta .published {
-	display: block;
-}
-
-.post .entry-header,
-.post .article-content,
-.post .tags {
-	margin: 1em;
-}
-
-.post .article-content p {
-	padding: 0.5em 0;
-}
-
 .post .article-content .has-drop-cap:first-letter{
-	float: left;
 	font-size: 6.4em;
 	line-height: .68;
 	font-weight: 100;
-	margin: .05em .1em 0 0;
 	text-transform: uppercase;
 	font-style: normal
 }
 
 .post .article-content .wp-block-quote {
-  border-left: 2px solid #1472ba;
-  padding-left: 1em;
-}
-
-.post .article-content > * {
-  margin-top: 1em;
-  margin-bottom: 1em;
+	border-left: 2px solid #1472ba;
 }
 
 .post .tags span {
@@ -139,21 +73,12 @@ h1, h2, h3, h4, h5, h6,
 	font-weight: bold;
 }
 
-.post .tags ul {
-	padding: 0;
-	display: inline;
-}
-
 .post .tags li {
 	list-style-type: none;
-	display: inline-block;
-	padding: 0.3em 0.2em;
 }
 
 .post .tags li a {
 	background-color: #f1f1f1;
-	margin: 0 .25rem .25rem 0;
-	padding: .25rem .5rem;
 	color: #1472ba;
 	text-decoration: none;
 }
@@ -161,28 +86,17 @@ h1, h2, h3, h4, h5, h6,
 .section-header {
 	color: #1472ba;
 	border-bottom: 4px solid #ccc;
-	padding-bottom: .33rem;
 	text-transform: uppercase;
 	font-size: 1em;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5em;
 }
 
 .article-list {
-  margin: 0;
-  padding: 0;
+	padding-left: 0;
 }
 
 .article-list li {
-  list-style-type: none;
-}
-
-.article-list .post {
-  display: flex;
-  margin: 1rem 0;
-}
-
-.article-list .post img {
-  margin-right: 0.8rem;
+	list-style-type: none;
 }
 
 .article-list .post .headline {
@@ -190,33 +104,70 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .article-list .post .headline a {
-  text-decoration: none;
-  color: #111;
-}
-
-.pagination .previous,
-.pagination .page {
-  margin-right: 1em;
+	text-decoration: none;
+	color: #111;
 }
 
 .comment-meta .author {
-  display: block;
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .comment-meta .date {
-  display: block;
-  font-size: 0.8em;
-  color: #111;
-}
-
-.comment-text {
-  margin-top: 0.5em;
-  margin-bottom: 1em;
+	font-size: 0.8em;
+	color: #111;
 }
 
 #footer {
-	padding-top: 1.5rem;
-	margin: 1rem;
 	border-top: 3px solid gray;
+}
+
+/**
+ * Flexbox
+ */
+#header {
+	display: flex;
+	justify-content: center;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.screen-home {
+	padding: 1em 0.5em;
+}
+
+.post {
+	display: flex;
+	gap: 1em;
+	padding-bottom: 1em;
+}
+
+@media ( min-width: 768px ) {
+
+	.article-list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.article-list > li {
+		flex-basis: 50%;
+	}
+
+}
+
+@media ( min-width: 1024px ) {
+
+	.section-header {
+		width: calc( 80vw + 1em );
+		margin: 0 auto;
+		margin-bottom: 1em;
+	}
+
+	.article-list {
+		justify-content: center;
+	}
+
+	.article-list > li {
+		flex-basis: 40%;
+	}
+
 }
