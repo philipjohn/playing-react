@@ -31,11 +31,20 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 /**
+ * Variables
+ */
+:root {
+	--primary-color: #1472ba;
+	--border-color: #dddddd;
+	--highlight-text-colour: #111;
+}
+
+/**
 * Custom styles
 */
 
 #header {
-	background-color: #1472ba;
+	background-color: var(--primary-color);
 	padding-bottom: 5px;
 	padding-top: 10px;
 	text-align: center;
@@ -56,7 +65,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .post .entry-header {
-	border-bottom:  1px solid #ddd;
+	border-bottom:  1px solid var(--border-color);
 	padding-bottom: 1rem;
 }
 
@@ -65,7 +74,7 @@ h1, h2, h3, h4, h5, h6,
 	display: inline-block;
 	margin: 0 .25rem .25rem 0;
 	padding: .35em .5em;
-	background-color: #1472ba;
+	background-color: var(--primary-color);
 	color: #fff;
 	transition: color 110ms ease-in-out;
 	text-transform: uppercase;
@@ -125,7 +134,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .post .article-content .wp-block-quote {
-  border-left: 2px solid #1472ba;
+  border-left: 2px solid var(--primary-color);
   padding-left: 1em;
 }
 
@@ -154,13 +163,13 @@ h1, h2, h3, h4, h5, h6,
 	background-color: #f1f1f1;
 	margin: 0 .25rem .25rem 0;
 	padding: .25rem .5rem;
-	color: #1472ba;
+	color: var(--primary-color);
 	text-decoration: none;
 }
 
 .section-header {
-	color: #1472ba;
-	border-bottom: 4px solid #ccc;
+	color: var(--primary-color);
+	border-bottom: 4px solid var(--border-color);
 	padding-bottom: .33rem;
 	text-transform: uppercase;
 	font-size: 1em;
@@ -191,7 +200,7 @@ h1, h2, h3, h4, h5, h6,
 
 .article-list .post .headline a {
   text-decoration: none;
-  color: #111;
+  color: var(--highlight-text-colour);
 }
 
 .pagination .previous,
@@ -207,7 +216,7 @@ h1, h2, h3, h4, h5, h6,
 .comment-meta .date {
   display: block;
   font-size: 0.8em;
-  color: #111;
+  color: var(--highlight-text-colour);
 }
 
 .comment-text {
