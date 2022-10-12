@@ -9,7 +9,7 @@ const Header = () => {
 				className='logo-link'
 			>
 				<img
-					src='LichfieldLiveLogo_White.webp'
+					src='/LichfieldLiveLogo_White.webp'
 					alt='Lichfield Live logo'
 					title='Go to home'
 					width={ 140 }
