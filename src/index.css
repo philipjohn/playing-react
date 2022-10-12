@@ -37,11 +37,16 @@ p, h1, h2, h3, h4, h5, h6 {
 	background-color: #1472ba;
 }
 
-.post .entry-header {
-	border-bottom:	1px solid #ddd;
+.article {
+	display: grid;
+	grid-gap: 1em;
 }
 
-.post .entry-header .category a {
+.article .article-meta .byline {
+	margin-inline-end: 0.3em;
+}
+
+.article .entry-header .category a {
 	text-decoration: none;
 	background-color: #1472ba;
 	color: #fff;
@@ -52,11 +57,16 @@ p, h1, h2, h3, h4, h5, h6 {
 	line-height: 1.2;
 }
 
-.post .article-meta {
+.article .article-meta {
 	color: #515151;
 }
 
-.post .article-content .has-drop-cap:first-letter{
+.article .article-content {
+	display: grid;
+	gap: 1em;
+}
+
+.article .article-content .has-drop-cap:first-letter{
 	font-size: 6.4em;
 	line-height: .68;
 	font-weight: 100;
@@ -64,23 +74,33 @@ p, h1, h2, h3, h4, h5, h6 {
 	font-style: normal
 }
 
-.post .article-content .wp-block-quote {
+.article .article-content .wp-block-quote {
 	border-left: 2px solid #1472ba;
 }
 
-.post .tags span {
+.article .tags span {
 	text-transform: uppercase;
 	font-weight: bold;
+	float: left;
+	padding-inline-end: 0.5em;
 }
 
-.post .tags li {
+.article .tags > ul {
+	padding-left: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+}
+
+.article .tags li {
 	list-style-type: none;
 }
 
-.post .tags li a {
+.article .tags li a {
 	background-color: #f1f1f1;
 	color: #1472ba;
 	text-decoration: none;
+	padding: 0.2em;
 }
 
 .section-header {
@@ -156,7 +176,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 @media ( min-width: 768px ) {
 
-	.article-list {
+	.article-list .post {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
@@ -171,7 +191,7 @@ p, h1, h2, h3, h4, h5, h6 {
 		margin-bottom: 1em;
 	}
 
-	.article-list {
+	.article-list .post {
 		grid-template-columns: repeat( 2, 40vw );
 		justify-content: center;
 	}
