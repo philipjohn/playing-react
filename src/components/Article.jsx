@@ -55,7 +55,7 @@ const Article = () => {
 		<>
 			{ loading && <LoadingSpinner /> }
 			{ (!loading && article) &&
-				<div className='post'>
+				<div className='article'>
 					<div className="entry-header">
 
 						<CategoryLink id={ parseInt(article._yoast_wpseo_primary_category) } />
