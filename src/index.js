@@ -40,6 +40,23 @@ const App = () => {
 				</Routes>
 			</Router>
 
+			<div className='popup popup-one'>
+				<h4>Some annoying popup</h4>
+				<p>I am an annoying popup asking you to do something before you can carry on.</p>
+				<p>Click this button to make me get lost:</p>
+				<input className='dismiss-button' type="button" onClick={ ( e ) => {
+					document.getElementsByClassName('popup-one')[0].style.display = 'none';
+				} } value="GET LOST!" />
+			</div>
+
+			<div className='popup popup-two'>
+				<h4>Another annoying popup</h4>
+				<p>Just in case you weren't annoyed enough already, this is another annoying popup to annoy you. You know the score, there's the button...</p>
+				<input className='dismiss-button' type="button" onClick={ ( e ) => {
+					document.getElementsByClassName('popup-two')[0].style.display = 'none';
+				} } value="GET LOST!" />
+			</div>
+
 			{/* todo: replace with footer component */ }
 			<div id="footer">
 				<p>Copyright &#169; Lichfield Community Media C.I.C., All rights reserved.</p>
